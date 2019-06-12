@@ -13,6 +13,7 @@ class App extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
   handleChange(event) {
     this.setState({ userInput: event.target.value })
@@ -24,6 +25,11 @@ class App extends Component {
     })
     document.getElementById("taskForm").reset()
   }
+  handleDelete(taskId) {
+    this.setState( prevState => ({
+      tasks: prevState.tasks.filter(task => task !== taskId)
+    }))
+  }
   render() {
     const { tasks } = this.state
 
@@ -33,7 +39,10 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <TaskList tasks={tasks} />
+        <TaskList
+          tasks={tasks}
+          handleDelete={this.handleDelete}
+        />
       </React.Fragment>
     )
   }
