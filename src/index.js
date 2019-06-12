@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import TaskList from './components/TaskList'
 
 class App extends Component {
   constructor(props) {
@@ -23,14 +24,10 @@ class App extends Component {
     document.getElementById("taskForm").reset()
   }
   render() {
-    const tasks = this.state.tasks
-    const taskList = tasks.map(task =>
-      <li key={task}>
-        {task}
-      </li>
-    )
+    const { tasks } = this.state
+
     return (
-      <div>
+      <React.Fragment>
         <form id="taskForm" onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -41,8 +38,8 @@ class App extends Component {
             Add Task
           </button>
         </form>
-        <ul>{taskList}</ul>
-      </div>
+        <TaskList tasks={tasks} />
+      </React.Fragment>
     )
   }
 }
