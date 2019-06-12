@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import TaskList from './components/TaskList'
+import GetTask from './components/GetTask'
 
 class App extends Component {
   constructor(props) {
@@ -28,16 +29,10 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <form id="taskForm" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Task to master"
-            onChange={this.handleChange}
-          />
-          <button type="submit">
-            Add Task
-          </button>
-        </form>
+        <GetTask
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
         <TaskList tasks={tasks} />
       </React.Fragment>
     )
