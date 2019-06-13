@@ -21,7 +21,8 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault()
     this.setState({
-      tasks: this.state.tasks.concat(this.state.userInput)
+      tasks: this.state.tasks.concat(this.state.userInput),
+      userInput: ''
     })
     document.getElementById("taskForm").reset()
   }
@@ -31,13 +32,14 @@ class App extends Component {
     }))
   }
   render() {
-    const { tasks } = this.state
+    const { tasks, userInput } = this.state
 
     return (
       <React.Fragment>
         <GetTask
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          userInput={userInput}
         />
         <TaskList
           tasks={tasks}
